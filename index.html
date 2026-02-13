@@ -62,9 +62,20 @@ button:hover {
   box-shadow: 0 1.5vw 4vw rgba(0,0,0,0.5);
 }
 
-.yes { background: #ff3860; color: #fff; }
-.no { background: #222; color: #ff3860; }
-.back { background: #fff; color: #ff3860; }
+.yes {
+  background: #ff3860;
+  color: #fff;
+}
+
+.no {
+  background: #222;
+  color: #ff3860;
+}
+
+.back {
+  background: #fff;
+  color: #ff3860;
+}
 
 @keyframes shake {
   0% { transform: translateX(-3vw); }
@@ -96,40 +107,39 @@ button:hover {
   100% { transform: translateY(110vh); opacity: 0; }
 }
 
-#gameArea { display: flex; flex-wrap: wrap; justify-content: center; width: 100%; margin-top: 5vw; }
+#gameArea {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 5vw;
+}
 </style>
 </head>
-<body>
-
-<h1 id="mainTitle"> Hi love, will you be my Valentine? ❤️</h1>
-<div class="buttons" id="buttonArea">
-  <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
-  <button class="no" onclick="handleNo()">…Nooo 😭</button>
-</div>
-<div id="gameArea"></div>
-
+<body onload="resetPage()">
 <script>
 let noCount = 0;
 
+// Reset / initial view
 function resetPage() {
   noCount = 0;
-  document.getElementById('mainTitle').textContent = "Hi love, will you be my Valentine? ❤️";
-  document.getElementById('buttonArea').innerHTML = `
-    <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
-    <button class="no" onclick="handleNo()">…Nooo 😭</button>
+  document.body.innerHTML = `
+    <h1>Hi love, Will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
+      <button class="no" onclick="handleNo()">…Nooo 😭</button>
+    </div>
   `;
-  document.getElementById('gameArea').innerHTML = '';
 }
 
-// YES button
+// YES button click
 function sayYes() {
-  document.getElementById('mainTitle').textContent = "YAAAY!!! ❤️💥";
-  document.getElementById('buttonArea').innerHTML = `
+  document.body.innerHTML = `
+    <h1>YAAAY!!! ❤️💥</h1>
     <p>I know you love me so much HEHE. I love you!! 🎉</p>
     <p>Ikaw think asa ta date, dugay kaayu ka human work uy!</p>
     <button class="back" onclick="resetPage()">Back</button>
   `;
-  
   for(let i=0;i<100;i++){
     let conf = document.createElement('div');
     conf.className = 'confetti';
@@ -141,7 +151,7 @@ function sayYes() {
   }
 }
 
-// NO button
+// NO button click
 function handleNo() {
   noCount++;
   if(noCount === 1){
@@ -153,13 +163,15 @@ function handleNo() {
   }
 }
 
-// Mini-game
+// Mini-game if NO clicked twice
 function startMiniGame() {
-  document.getElementById('mainTitle').textContent = "Redeem yourself! Tap all 8 hearts!! 💖";
-  document.getElementById('buttonArea').innerHTML = `<p id="countdown">Time left: 10</p>`;
-  const gameArea = document.getElementById('gameArea');
-  gameArea.innerHTML = '';
+  document.body.innerHTML = `
+    <h1>Redeem yourself! Tap all 8 hearts!! 💖</h1>
+    <p id="countdown">Time left: 10</p>
+    <div id="gameArea"></div>
+  `;
 
+  const gameArea = document.getElementById('gameArea');
   const target = 8;
   let taps = 0;
 
@@ -183,27 +195,33 @@ function startMiniGame() {
 
   const timer = setInterval(() => {
     timeLeft--;
-    if(timeLeft > 3) {
+
+    if (timeLeft > 3) {
       countdownEl.textContent = `Time left: ${timeLeft}`;
     } else if (timeLeft === 3) {
       countdownEl.textContent = `Time left: 3...`;
-      clearInterval(timer);
-      setTimeout(() => { countdownEl.textContent = `di jud kaa nahan mag date???`; }, 2000);
-      setTimeout(() => { countdownEl.textContent = `okay fine! cars > marketplace > me`; }, 5000);
+      
+      clearInterval(timer); // stop countdown
+      // show remaining messages with delays
+      setTimeout(() => {
+        countdownEl.textContent = `di jud kaa nahan mag date???`;
+      }, 2000); // 2 seconds after 3...
+
+      setTimeout(() => {
+        countdownEl.textContent = `okay fine! cars > marketplace > me`;
+      }, 5000); // 5 seconds after 3...
     }
+
   }, 1000);
 }
 
 // Show YES after mini-game
 function showYes() {
-  document.getElementById('mainTitle').textContent = "Phew! I gib u chance because i love you 😅.";
-  document.getElementById('buttonArea').innerHTML = `<button class="yes" onclick="sayYes()">YES!!! ❤️</button>`;
-  document.getElementById('gameArea').innerHTML = '';
+  document.body.innerHTML = `
+    <h1>Phew! I gib u chance because i love you 😅. </h1>
+    <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
+  `;
 }
 </script>
-
 </body>
 </html>
-
-
-
