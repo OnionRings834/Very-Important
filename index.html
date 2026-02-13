@@ -132,7 +132,7 @@ let noCount = 0;
 function resetPage() {
   noCount = 0;
   document.body.innerHTML = `
-    <h1>Will you be my Valentine? ❤️</h1>
+    <h1>Hi love, Will you be my Valentine? ❤️</h1>
     <div class="buttons">
       <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
       <button class="no" onclick="handleNo()">…Nooo 😭</button>
@@ -144,8 +144,9 @@ function resetPage() {
 function sayYes() {
   document.body.innerHTML = `
     <h1>YAAAY!!! ❤️💥</h1>
-    <p>Confetti everywhere! 🎉</p>
-    <button class="back" onclick="resetPage()">Back 🔙</button>
+    <p>I know you love me so much HEHE. I love you!! 🎉</p>
+    <p>Ikaw think asa ta date, dugay kaayu ka human work uy!</p>
+    <button class="back" onclick="resetPage()">Back</button>
   `;
   for(let i=0;i<100;i++){
     let conf = document.createElement('div');
@@ -162,7 +163,7 @@ function sayYes() {
 function handleNo() {
   noCount++;
   if(noCount === 1){
-    alert('Are you sure??? 😱');
+    alert('Are you sure??? 😱 Dugay kaayu ko nahuman ani!');
     document.body.style.animation = 'shake 0.1s infinite';
     setTimeout(()=>{document.body.style.animation = ''}, 2000);
   } else {
@@ -173,7 +174,7 @@ function handleNo() {
 // Mini-game if NO clicked twice
 function startMiniGame() {
   document.body.innerHTML = `
-    <h1>Redeem yourself! Tap all 8 hearts 💖</h1>
+    <h1>Redeem yourself! Tap all 8 hearts!! 💖</h1>
     <p id="countdown">Time left: 10</p>
     <div id="gameArea"></div>
   `;
@@ -199,22 +200,35 @@ function startMiniGame() {
 
   let timeLeft = 10;
   const countdownEl = document.getElementById('countdown');
+
   const timer = setInterval(() => {
     timeLeft--;
-    if(timeLeft > 3){
+
+    if (timeLeft > 3) {
       countdownEl.textContent = `Time left: ${timeLeft}`;
-    } else {
-      countdownEl.textContent = `Time left: 3... ... ... (Just teasing 😜)`;
+    } else if (timeLeft === 3) {
+      countdownEl.textContent = `Time left: 3...`;
+      
+      clearInterval(timer); // stop countdown
+      // show remaining messages with delays
+      setTimeout(() => {
+        countdownEl.textContent = `di jud kaa nahan mag date???`;
+      }, 2000); // 2 seconds after 3...
+
+      setTimeout(() => {
+        countdownEl.textContent = `okay fine! cars > marketplace > me`;
+      }, 5000); // 5 seconds after 3...
     }
+
   }, 1000);
 }
 
 // Show YES after mini-game
 function showYes() {
   document.body.innerHTML = `
-    <h1>Phew! You redeemed yourself 😅</h1>
+    <h1>Phew! I gib u chance because i love you 😅. </h1>
     <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
-      `;
+  `;
 }
 </script>
 </body>
