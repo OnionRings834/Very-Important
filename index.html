@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Very Important! </title>
+<title>Valentine's Challenge ❤️</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
@@ -118,7 +118,7 @@ button:hover {
 </head>
 <body>
 
-<h1>Hi love, will you be my Valentine? ❤️</h1>
+<h1>Will you be my Valentine? ❤️</h1>
 
 <div class="buttons">
   <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
@@ -144,7 +144,7 @@ function resetPage() {
 function sayYes() {
   document.body.innerHTML = `
     <h1>YAAAY!!! ❤️💥</h1>
-    <p>Ohmygosh, I know you love me so much!! I love you more! 🎉</p>
+    <p>Confetti everywhere! 🎉</p>
     <button class="back" onclick="resetPage()">Back 🔙</button>
   `;
   for(let i=0;i<100;i++){
@@ -162,7 +162,7 @@ function sayYes() {
 function handleNo() {
   noCount++;
   if(noCount === 1){
-    alert('Are you sure??? 😱 It took me forever to make this!');
+    alert('Are you sure??? 😱');
     document.body.style.animation = 'shake 0.1s infinite';
     setTimeout(()=>{document.body.style.animation = ''}, 2000);
   } else {
@@ -204,11 +204,7 @@ function startMiniGame() {
     if(timeLeft > 3){
       countdownEl.textContent = `Time left: ${timeLeft}`;
     } else {
-      countdownEl.textContent = `Time left: 3...`;
-    } else {
-      countdownEl.textContent = `Time left: really? di jud ka? okay fine😠 `;
-    } else {
-      countdownEl.textContent = `Time left: cars > marketplace > me `;
+      countdownEl.textContent = `Time left: 3... ... ... (Just teasing 😜)`;
     }
   }, 1000);
 }
@@ -216,7 +212,7 @@ function startMiniGame() {
 // Show YES after mini-game
 function showYes() {
   document.body.innerHTML = `
-    <h1>Phew! Okay fine, i gib u chance because you feed me</h1>
+    <h1>Phew! You redeemed yourself 😅</h1>
     <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
       `;
 }
