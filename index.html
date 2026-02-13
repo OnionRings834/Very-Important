@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine's Challenge ❤️</title>
+<title> Very Important! </title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
@@ -33,21 +33,21 @@ body {
 }
 
 h1 {
-  font-size: 6vw; /* responsive for iPhone */
+  font-size: 6vw;
   margin-bottom: 5vw;
   text-shadow: 2px 2px 5px #000;
 }
 
 .buttons {
   display: flex;
-  gap: 5vw; /* responsive spacing */
+  gap: 5vw;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 5vw;
 }
 
 button {
-  padding: 3vw 6vw; /* responsive padding */
+  padding: 3vw 6vw;
   font-size: 5vw;
   border: none;
   border-radius: 10vw;
@@ -69,6 +69,11 @@ button:hover {
 
 .no {
   background: #222;
+  color: #ff3860;
+}
+
+.back {
+  background: #fff;
   color: #ff3860;
 }
 
@@ -113,7 +118,7 @@ button:hover {
 </head>
 <body>
 
-<h1>Will you be my Valentine? ❤️</h1>
+<h1>Hi love, will you be my Valentine? ❤️</h1>
 
 <div class="buttons">
   <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
@@ -123,8 +128,25 @@ button:hover {
 <script>
 let noCount = 0;
 
+// Reset to initial view
+function resetPage() {
+  noCount = 0;
+  document.body.innerHTML = `
+    <h1>Will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
+      <button class="no" onclick="handleNo()">…Nooo 😭</button>
+    </div>
+  `;
+}
+
+// YES button click
 function sayYes() {
-  document.body.innerHTML = '<h1>YAAAY!!! ❤️💥</h1><p>Confetti everywhere! 🎉</p>';
+  document.body.innerHTML = `
+    <h1>YAAAY!!! ❤️💥</h1>
+    <p>Ohmygosh, I know you love me so much!! I love you more! 🎉</p>
+    <button class="back" onclick="resetPage()">Back 🔙</button>
+  `;
   for(let i=0;i<100;i++){
     let conf = document.createElement('div');
     conf.className = 'confetti';
@@ -136,10 +158,11 @@ function sayYes() {
   }
 }
 
+// NO button click
 function handleNo() {
   noCount++;
   if(noCount === 1){
-    alert('Are you sure??? 😱');
+    alert('Are you sure??? 😱 It took me forever to make this!');
     document.body.style.animation = 'shake 0.1s infinite';
     setTimeout(()=>{document.body.style.animation = ''}, 2000);
   } else {
@@ -147,6 +170,7 @@ function handleNo() {
   }
 }
 
+// Mini-game if NO clicked twice
 function startMiniGame() {
   document.body.innerHTML = `
     <h1>Redeem yourself! Tap all 8 hearts 💖</h1>
@@ -155,7 +179,6 @@ function startMiniGame() {
   `;
 
   const gameArea = document.getElementById('gameArea');
-
   const target = 8;
   let taps = 0;
 
@@ -181,16 +204,21 @@ function startMiniGame() {
     if(timeLeft > 3){
       countdownEl.textContent = `Time left: ${timeLeft}`;
     } else {
-      countdownEl.textContent = `Time left: 3... ... ... (Just teasing 😜)`;
+      countdownEl.textContent = `Time left: 3...`;
+    } else {
+      countdownEl.textContent = `Time left: really? di jud ka? okay fine😠 `;
+    } else {
+      countdownEl.textContent = `Time left: cars > marketplace > me `;
     }
   }, 1000);
 }
 
+// Show YES after mini-game
 function showYes() {
   document.body.innerHTML = `
-    <h1>Phew! You redeemed yourself 😅</h1>
+    <h1>Phew! Okay fine, i gib u chance because you feed me</h1>
     <button class="yes" onclick="sayYes()">YES!!! ❤️</button>
-  `;
+      `;
 }
 </script>
 </body>
